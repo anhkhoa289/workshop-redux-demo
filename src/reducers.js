@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux'
-import { USER_CREATE ,USER_UPDATE } from './action'
+import { USER_CREATE ,USER_UPDATE, USER_DELETE } from './action'
 
 
 
@@ -27,6 +27,13 @@ const userReducer = (state = userStructure, action) => {
       return {
         ...state,
         userList: [ ...state.userList ]
+      }
+    }
+    case USER_DELETE : {
+      const { id } = action.data
+      return {
+        ...state,
+        userList: state.userList.filter((x,i) => i !== id)
       }
     }
     default: return state
