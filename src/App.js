@@ -25,7 +25,7 @@ function App(props) {
     const userId = e.target.value
     if (validate(userId)) {
       const result = props.userList[+userId]
-      setUser(result ? { id: userId, ...result } : { id: '', name: '', position: '' })
+      setUser(result ? { id: +userId, ...result } : { id: '', name: '', position: '' })
     }
   }
   const onChangeName = (e) => setUser({ ...user, name: e.target.value })
