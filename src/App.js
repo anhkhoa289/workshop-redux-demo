@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux'
-import { createUser, updateUser } from './action'
+import { createUser, updateUser, deleteUser } from './action'
 import './style.css'
 
 
@@ -34,6 +34,7 @@ function App(props) {
 
   const onCreate = () => props.createUser(user)
   const onSave = () => validate() ? props.updateUser(user) : ''
+  const onDelete = () => validate() ? props.deleteUser(user) : ''
 
 
 
@@ -65,7 +66,7 @@ function App(props) {
         </label>
         <button onClick={onCreate}>Create</button>
         <button onClick={onSave}>Save</button>
-        <button>Delete</button>
+        <button onClick={onDelete}>Delete</button>
       </div>
     </div>
   );
@@ -84,6 +85,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   createUser: user => dispatch(createUser(user)),
   updateUser: user => dispatch(updateUser(user)),
+  deleteUser: user => dispatch(deleteUser(user)),
 })
 
 export default connect(

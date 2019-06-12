@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux'
-import { USER_CREATE ,USER_UPDATE } from './action'
+import { USER_CREATE ,USER_UPDATE, USER_DELETE } from './action'
 
 
 
@@ -23,6 +23,18 @@ const userReducer = (state = userStructure, action) => {
     case USER_UPDATE: {
       const { id, name, position } = action.data
       state.userList[id] = { name, position }
+
+      return {
+        ...state,
+        userList: [ ...state.userList ]
+      }
+    }
+    case USER_DELETE: {
+      const { id } = action.data
+
+      state.userList.splice(id, 1)
+
+      console.log(state.userList[id])
 
       return {
         ...state,
