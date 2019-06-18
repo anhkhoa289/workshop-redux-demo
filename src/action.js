@@ -9,3 +9,10 @@ export const createUser = ({ name, position }) => {
 export const updateUser = ({ id, name, position }) => {
   return { type: USER_UPDATE, data: { id, name, position } }
 }
+
+//example
+const fetchPosts = (subreddit) => async dispatch => {
+  dispatch(createUser(subreddit))
+  const result = await axios.post(`https://www.reddit.com/r/${subreddit}.json`)
+  dispatch(actionCreator(result))
+}
